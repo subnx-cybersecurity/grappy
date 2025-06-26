@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="new.css" />
+
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+    <h2> <img src="./src/img/Logo.png" alt="Logo" style="width:30px; vertical-align:middle; margin-right:8px;"/> Dashboard </h2>
+  <hr style="border: none; border-bottom: 1px solid rgba(0,0,0,0.1); margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" />
+  <div class="menu-item active" onclick="highlightTab(this); showDashboardPage();"><i class="fa-sharp-duotone fa-solid fa-store"></i> Dashboard</div> 
+    <div class="menu-item" onclick="highlightTab(this); showTablesPage();"><i class="fa-sharp-duotone fa-solid fa-chart-simple"></i> Graph</div>
+  
+  </div>
+  <div class="main">
+    <div class="top-bar">
+      <span class="hamburger" onclick="toggleSidebar()">☰</span>
+      <!-- <input type="text" placeholder="Search here..." /> -->
+      <button class="btn">Logout</button>
+    </div>
+    <div class="main">
+    <div id="dashboardPage">
+    <div>
+    <h1 style="margin-bottom: 10px;">Welcome to Our Company Dashboard</h1>
+    </div>   </div>  </div>    
+    
+    <!--<div class="reviews">
+      <h3>Reviews</h3>
+      <div class="review-item">
+        <div class="review-label">Positive Reviews</div>
+        <div class="review-bar"><div class="review-fill" style="width: 80%; background: #f97316;"></div></div>
+        <div class="review-percent">80%</div>
+      </div>
+      <div class="review-item">
+        <div class="review-label">Neutral Reviews</div>
+        <div class="review-bar"><div class="review-fill" style="width: 17%; background: gray;"></div></div>
+        <div class="review-percent">17%</div>
+      </div>
+      <div class="review-item">
+        <div class="review-label">Negative Reviews</div>
+        <div class="review-bar"><div class="review-fill" style="width: 3%; background: red;"></div></div>
+        <div class="review-percent">3%</div>
+      </div>
+      <p style="margin-top: 10px; font-size: 12px; color: gray;">More than <b>1,500,000</b> developers used Creative Tim's products and over <b>700,000</b> projects were created.</p>
+      <button class="btn" style="margin-top: 15px;">View all reviews</button>
+    </div> -->
+
+      <div id="tablesPage" style="display:none;">
+  <h1 style="margin-bottom: 20px;">Tables - Upload Excel File</h1>
+  <p style="margin-bottom: 30px; color: gray;">You can upload your Excel files here to analyze data.</p>
+
+  <input type="file" id="excelUpload" accept=".xls,.xlsx" />
+  <canvas id="barChart" style="max-width: 600px; margin-top: 40px;"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+  <script>
+    let barChart;
+
+    document.getElementById('excelUpload').addEventListener('change', function (e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+        const sheetName = workbook.SheetNames[0];
+        const sheet = workbook.Sheets[sheetName];
+        const rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+        const headers = rows[0];
+        const productIndex = headers.indexOf("Product");
+        const stockDaysIndex = headers.indexOf("Stock Days");
+
+        if (productIndex === -1 || stockDaysIndex === -1) {
+          alert("The Excel sheet must contain 'Product' and 'Stock Days' columns.");
+          return;
+        }
+
+        const labels = [];
+        const stockDays = [];
+
+        for (let i = 1; i < rows.length; i++) {
+          const row = rows[i];
+          const product = row[productIndex];
+          const days = row[stockDaysIndex];
+
+          if (product && typeof days === 'number') {
+            labels.push(product.split('_')[0]); // Short product name
+            stockDays.push(days);
+          }
+        }
+
+        drawBarChart(labels, stockDays);
+      };
+
+      reader.readAsArrayBuffer(file);
+    });
+
+    function drawBarChart(labels, data) {
+      const ctx = document.getElementById('barChart').getContext('2d');
+
+      if (barChart) barChart.destroy();
+
+      barChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Stock Days',
+            data: data,
+            backgroundColor: '#f97316'
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          },
+          plugins: {
+            title: {
+              display: true,
+              text: 'Stock Days per Product'
+            }
+          }
+        }
+      });
+    }
+  </script>
+</div>
+
+
+
+  <script src="db_script.js"></script>
+</body>
+</html>

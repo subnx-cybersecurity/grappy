@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      display: flex;
+      flex-direction: row;
+      background: #f4f5f7;
+      height: 100vh;
+      color: #333;
+    }
+    .sidebar {
+      width: 250px;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+    }
+    .sidebar h2 {
+      margin-bottom: 40px;
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .menu-item {
+      margin: 20px 0;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .main {
+      flex: 1;
+      padding: 40px;
+      overflow-y: auto;
+    }
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    .top-bar input {
+      padding: 10px;
+      width: 100%;
+      max-width: 300px;
+      margin-bottom: 10px;
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .card {
+      flex: 1;
+      min-width: 180px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .card.orange { background-color: #f97316; color: #fff; }
+    .card.black { background-color: #111827; color: #fff; }
+    .reviews, .projects {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+    .bar {
+      height: 6px;
+      background: #e5e7eb;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 5px;
+      margin-bottom: 10px;
+    }
+    .bar .fill {
+      height: 100%;
+      background: #f97316;
+    }
+    .review-label {
+      font-weight: 500;
+      margin-top: 10px;
+    }
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      .sidebar {
+        display: none;
+        width: 100%;
+      }
+      .sidebar.active {
+        display: block;
+      }
+      .hamburger {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar" id="sidebar">
+    <h2>Soft UI Dashboard</h2>
+    <div class="menu-item">Dashboard</div>
+    <div class="menu-item">Tables</div>
+    <div class="menu-item">Billing</div>
+    <div class="menu-item">Virtual Reality</div>
+    <div class="menu-item">Profile</div>
+    <div class="menu-item">Sign In</div>
+    <div class="menu-item">Sign Up</div>
+  </div>
+  <div class="main">
+    <div class="top-bar">
+      <span class="hamburger" onclick="toggleSidebar()">☰</span>
+      <input type="text" placeholder="Search here..." />
+      <button style="padding: 10px 20px; background: #f97316; color: #fff; border: none; border-radius: 6px;">Online Builder</button>
+    </div>
+
+    <div class="cards">
+      <div class="card orange">
+        <h3>1600</h3>
+        <p>Users Active</p>
+        <small>+55%</small>
+      </div>
+      <div class="card black">
+        <h3>357</h3>
+        <p>Click Events</p>
+        <small>+124%</small>
+      </div>
+      <div class="card black">
+        <h3>2300</h3>
+        <p>Purchases</p>
+        <small>+15%</small>
+      </div>
+      <div class="card black">
+        <h3>940</h3>
+        <p>Likes</p>
+        <small>+90%</small>
+      </div>
+    </div>
+
+    <div class="reviews">
+      <h3>Reviews</h3>
+      <div class="review-label">Positive Reviews</div>
+      <div class="bar"><div class="fill" style="width: 80%;"></div></div>
+      <div class="review-label">Neutral Reviews</div>
+      <div class="bar"><div class="fill" style="width: 17%; background: gray;"></div></div>
+      <div class="review-label">Negative Reviews</div>
+      <div class="bar"><div class="fill" style="width: 3%; background: red;"></div></div>
+    </div>
+
+    <div class="projects">
+      <h3>Projects Overview</h3>
+      <p>30 done this month</p>
+      <ul>
+        <li>Soft UI XD Version - $14,000 - 60%</li>
+        <li>Add Progress Track - $3,000 - 10%</li>
+        <li>Fix Platform Errors - Not Set - 100%</li>
+        <li>Launch Mobile App - $20,500 - 100%</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
