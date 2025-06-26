@@ -63,5 +63,26 @@
     <!-- JS -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="js/main.js"></script>
+        <script>
+    document.getElementById('login-form').addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent form submission
+
+        // Hardcoded credentials
+        const validUsername = 'admin';
+        const validPassword = '1324';
+
+        // Get user inputs
+        const username = document.getElementById('your_name').value.trim();
+        const password = document.getElementById('your_pass').value.trim();
+
+        // Simple validation
+        if (username === validUsername && password === validPassword) {
+            alert('Login successful!');
+            window.location.href = 'new.html'; // Redirect to your dashboard page
+        } else {
+            alert('Invalid username or password!');
+        }
+    });
+</script>
 </body>
 </html>
