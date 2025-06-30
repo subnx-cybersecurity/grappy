@@ -92,6 +92,19 @@ canvas {
     background: #e60000;
 }
 
+.graph-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.graph-btn:hover {
+    background: #45a049;
+}
+
 /* Stylish Footer */
 .footer {
     margin-top: 60px;
