@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-document.getElementById('excelFile').addEventListener('change', function (e) {
+document.getElementById('combFile').addEventListener('change', function (e) {
   const file = e.target.files[0];
   if (!file) return;
 
