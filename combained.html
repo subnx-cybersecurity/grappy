@@ -9,17 +9,20 @@
 </head>
 <body>
   <div class="container">
-        <button class="logout-btn" onclick="logout()">Logout</button>
+    <button class="logout-btn" onclick="logout()">Logout</button>
     <h1>Kawasaki Combined Stock Graph</h1>
-    <input type="file" id="combFile" accept=".xls,.xlsx">
-    <canvas id="chartCanvas" ></canvas> <!--width="600" height="400">-->
+    
+    <input type="file" id="combinedStockFile" accept=".xls,.xlsx">
+    
+    <canvas id="chartCanvas"></canvas>
     
     <div style="text-align: left; margin-top: 10px;">
-   <a href="new.html" class="graph-btn" target="_blank">Kawasaki Vizag</a>
-</div>
+      <a href="new.html" class="graph-btn" target="_blank">Kawasaki Vizag</a>
+    </div>
   </div>
-   <div class="footer">
-    <div>&copy 2025</div>
+
+  <div class="footer">
+    <div>&copy; 2025</div>
     <div>for demo purpose only</div>
   </div>
 
@@ -31,4 +34,3 @@
 </script>
 </body>
 </html>
-
