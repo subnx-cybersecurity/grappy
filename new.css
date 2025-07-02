@@ -93,6 +93,19 @@ canvas {
 }
 
 .graph-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.graph-btn:hover {
+    background: #45a049;
+}
+
+.graph-btn {
     text-decoration: none;
 }
 
@@ -105,9 +118,7 @@ canvas {
     display: inline-block;
 }
 
-.graph-btn:hover {
-    background: #45a049;
-}
+
 
 /* Stylish Footer */
 .footer {
