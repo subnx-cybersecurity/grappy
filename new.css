@@ -75,7 +75,7 @@ canvas {
 
 
 .logout-btn {
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
     background: #ff4d4d;
